@@ -1,0 +1,42 @@
+services:
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass974
+      MYSQL_DATABASE: shopverse
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: shopverse974
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  shopverse-backend-svc:
+    image: shopverse-backend:v1
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: admin
+      DB_PASSWORD: shopverse974
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: shopverse
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+
+  frontend: 
+    image: shopverse-frontend:v1
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - shopverse-backend-svc
+
+volumes:
+  mysql-data:
