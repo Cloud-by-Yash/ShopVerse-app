@@ -6,10 +6,15 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:1.27-alpine
+
+USER root
+
+RUN apk update && apk upgrade --no-cache libcrypto3 libssl3
+
+USER 101
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /usr/share/nginx/html

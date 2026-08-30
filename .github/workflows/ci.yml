@@ -79,7 +79,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
       - name: Compile Go Binary
-        run: go build -o main .
+        run: go build -o main ./cmd
         working-directory: ./backend
         
       - name: Docker Build
