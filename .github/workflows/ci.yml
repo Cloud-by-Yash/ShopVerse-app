@@ -28,7 +28,8 @@ jobs:
 
       - name: SonarCloud Scan (SAST)
         uses: SonarSource/sonarcloud-github-action@master
-        env: { SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} }
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
       - name: Build Application
         run: npm run build
