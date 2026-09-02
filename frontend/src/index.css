@@ -4,6 +4,8 @@
 
 body {
   font-family: 'DM Sans', sans-serif;
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
