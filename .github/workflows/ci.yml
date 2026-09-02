@@ -11,13 +11,6 @@ on:
 jobs:
   frontend-ci:
     runs-on: ubuntu-latest
-    # Trigger frontend job only if frontend files or CI workflow changed
-    if: |
-      github.event_name == 'push' && 
-      (contains(github.event.head_commit.modified, 'frontend/') || 
-       contains(github.event.head_commit.added, 'frontend/') ||
-       contains(github.event.head_commit.removed, 'frontend/') ||
-       contains(github.event.head_commit.modified, '.github/workflows/ci.yml'))
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -63,13 +56,6 @@ jobs:
 
   backend-ci:
     runs-on: ubuntu-latest
-    # Trigger backend job only if backend files or CI workflow changed
-    if: |
-      github.event_name == 'push' && 
-      (contains(github.event.head_commit.modified, 'backend/') || 
-       contains(github.event.head_commit.added, 'backend/') ||
-       contains(github.event.head_commit.removed, 'backend/') ||
-       contains(github.event.head_commit.modified, '.github/workflows/ci.yml'))
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
