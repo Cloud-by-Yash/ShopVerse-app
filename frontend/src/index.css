@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body, #root {
   font-family: 'DM Sans', sans-serif;
-  background-color: #0f172a !important;
-  color: #f8fafc !important;
+  background: #0d1117 !important; 
+  color: #f0f6fc !important;
+  min-height: 100vh;
+}
+
+
+div, section, main {
+  background-color: transparent !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
